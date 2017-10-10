@@ -26,6 +26,12 @@ public class TileController : MonoBehaviour {
         rend.material.color = originalColor;
     }
 
+    public void OnMouseOver() {
+        if (Input.GetMouseButtonDown(0)) {
+            GameObject.FindWithTag("Player").transform.position = transform.position;
+        }
+    }
+
     private IEnumerator BumpColor() {
         for (int steps = 0; steps < bumpSteps; steps++) {
             rend.material.color += colorBump;
