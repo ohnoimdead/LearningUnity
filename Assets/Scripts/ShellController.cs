@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShellController : MonoBehaviour {
+public class ShellController : MouseLookBehavior {
     // The name Unity gives shells instantiated at runtime
     public const string SHELL_CLONE = "Shell(Clone)";
 
@@ -10,11 +10,12 @@ public class ShellController : MonoBehaviour {
     public bool posessed = false;
 
     private GameObject player;
-    private Quaternion originalRotation;
 
-    private void Start() {
+    public override void Start() {
+        base.Start();
+
+        onlyRotateX = true;
         player = GameObject.FindWithTag("Player");
-        originalRotation = transform.rotation;
     }
 
     public void OnMouseOver() {
@@ -23,7 +24,9 @@ public class ShellController : MonoBehaviour {
         }
     }
 
-    public void Rotate(Quaternion rotation) {
-        transform.rotation = originalRotation * rotation;
+    public void Update() {
+        if (Input.GetMouseButton(1) && posessed) {
+            MouseLook();
+        }
     }
 }

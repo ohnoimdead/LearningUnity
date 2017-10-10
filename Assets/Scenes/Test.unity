@@ -1811,15 +1811,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookSensitivity: 5
-  lookFrameBuffer: 10
+  lookFrameBuffer: 5
   lookUpMaxAngle: 60
   lookDownMaxAngle: -60
+  xQuat: {x: 0, y: 0, z: 0, w: 0}
+  yQuat: {x: 0, y: 0, z: 0, w: 0}
+  onlyRotateX: 0
+  horizontalRotation: 0
+  verticalRotation: 0
+  rotArrayX: []
+  rotArrayY: []
   heightOfPlayersEyes: 1.62
   currentTile: {fileID: 1874640622}
   currentShell: {fileID: 0}
   currentEnergy: 20
-  createShellCost: 3
-  shell: {fileID: 4900848640758424, guid: b43ea4cb2a47a8b44949167bdbe6da67, type: 2}
+  shellCost: 3
+  shellPrefab: {fileID: 4900848640758424, guid: b43ea4cb2a47a8b44949167bdbe6da67,
+    type: 2}
 --- !u!81 &1406891052
 AudioListener:
   m_ObjectHideFlags: 0
