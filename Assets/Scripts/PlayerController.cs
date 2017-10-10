@@ -13,35 +13,30 @@ public class PlayerController : MonoBehaviour {
     private List<float> rotArrayY = new List<float>();
     private Camera childCamera;
 
-	void Start ()
-    {
+    void Start() {
         childCamera = GetComponentInChildren<Camera>();
-        if (childCamera)
-        {
+
+        if (childCamera) {
             originalCameraRotation = childCamera.transform.localRotation;
         }
+
         originalShellRotation = transform.localRotation;
-	}
-	
-	void Update ()
-    {
-        if (Input.GetMouseButton(1))
-        {
+    }
+
+    void Update() {
+        if (Input.GetMouseButton(1)) {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             rotate();
-        } else
-        {
-            if (Cursor.visible == false)
-            {
+        } else {
+            if (Cursor.visible == false) {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
         }
     }
 
-    private void rotate()
-    {
+    private void rotate() {
         // Get the raw mouse input
         rotationX += Input.GetAxis("Mouse X") * sensitivity;
         rotationY += Input.GetAxis("Mouse Y") * sensitivity;
@@ -58,22 +53,19 @@ public class PlayerController : MonoBehaviour {
         transform.localRotation = originalShellRotation * xQuat;
 
         // Rotate only the camera on the y-axis
-        if (childCamera)
-        {
+        if (childCamera) {
             childCamera.transform.localRotation = originalCameraRotation * yQuat;
         }
     }
 
     // Returns the average of the rotations stored in the rotation frame buffer
-    private float GetAvgRot(float rot, List<float> rotArray)
-    {
+    private float GetAvgRot(float rot, List<float> rotArray) {
         float rotAvg = 0f;
 
         rotArray.Add(rot);
 
         // If our frame buffer is beyond max size, pop old values off the front (FIFO queue)
-        while (rotArray.Count > frameBuffer)
-        {
+        while (rotArray.Count > frameBuffer) {
             rotArray.RemoveAt(0);
         }
 
@@ -83,20 +75,18 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Deal with passing max rotation and also clamp values based on max.
-    private float ClampAngle(float angle, float min, float max)
-    {
+    private float ClampAngle(float angle, float min, float max) {
         angle = angle % 360;
-        if ((angle >= -360F) && (angle <= 360F))
-        {
-            if (angle < -360F)
-            {
+
+        if ((angle >= -360F) && (angle <= 360F)) {
+            if (angle < -360F) {
                 angle += 360F;
             }
-            if (angle > 360F)
-            {
+            if (angle > 360F) {
                 angle -= 360F;
             }
         }
+
         return Mathf.Clamp(angle, min, max);
     }
 }

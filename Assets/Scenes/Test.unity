@@ -1905,51 +1905,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4517347434091216, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385293369297066, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
+    - target: {fileID: 1410885618222586, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
+      propertyPath: m_Name
+      value: Space (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4385293369297066, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
       propertyPath: m_LocalScale.y
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410885618222586, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
-      propertyPath: m_Name
-      value: Space (3)
       objectReference: {fileID: 0}
     - target: {fileID: 23388664967180850, guid: 97bc6428bc61a2746b598e60710cc2bc,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 034648be031ae8b4bb64184b240c1ee3, type: 2}
-    - target: {fileID: 1700985865171290, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294258397639616, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410885618222586, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1700985865171290, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294258397639616, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410885618222586, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
   m_IsPrefabParent: 0
