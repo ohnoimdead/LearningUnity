@@ -10,11 +10,18 @@ public class TileController : MonoBehaviour {
     private Renderer rend;
     private Color originalColor;
     private Color colorBump;
+    private PlayerController playerController;
 
 	void Start () {
         colorBump = new Color(bumpAmount, bumpAmount, bumpAmount);
         rend = GetComponent<Renderer>();
         originalColor = rend.material.color;
+
+        // Just hang on to this ref for later
+        var player = GameObject.FindWithTag("Player");
+        if (player) {
+            playerController = player.GetComponent<PlayerController>();
+        }
 	}
 
     public void OnMouseEnter() {
@@ -28,7 +35,7 @@ public class TileController : MonoBehaviour {
 
     public void OnMouseOver() {
         if (Input.GetMouseButtonDown(0)) {
-            GameObject.FindWithTag("Player").transform.position = transform.position;
+            playerController.Teleport(gameObject);
         }
     }
 
