@@ -7,33 +7,35 @@ public class PlayerController : MonoBehaviour {
     public int lookFrameBuffer = 10;
     public float lookUpMaxAngle = -60f;
     public float lookDownMaxAngle = 60f;
-
-    // Gameplay stuff
-    public GameObject myTile;
-    public int currentEnergy = 100;
-    public int teleportCost = 10;
-
-    private Quaternion originalShellRotation, originalCameraRotation;
-    private float rotationX, rotationY;
+    public float heightOfPlayersEyes = 1.62f;
+    private Quaternion originalRotation;
+    private float horizontalRotation, verticalRotation;
     private List<float> rotArrayX = new List<float>();
     private List<float> rotArrayY = new List<float>();
-    private Camera childCamera;
+
+    // Gameplay stuff
+    public GameObject currentTile;
+    public GameObject currentShell;
+    public int currentEnergy = 5;
+    public int createShellCost = 3;
+
+    // References to prefabs
+    public Transform shell;
 
     void Start() {
-        childCamera = GetComponentInChildren<Camera>();
+        originalRotation = transform.rotation;
 
-        if (childCamera) {
-            originalCameraRotation = childCamera.transform.localRotation;
-        }
-
-        originalShellRotation = transform.localRotation;
+        // Create the initial shell
+        currentShell = Instantiate(shell, currentTile.transform.position, Quaternion.identity).gameObject;
+        currentTile.GetComponent<TileController>().objectOnTop = currentShell;
+        currentShell.GetComponent<ShellController>().posessed = true;
     }
 
     void Update() {
         if (Input.GetMouseButton(1)) {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            mouseLook();
+            MouseLook();
         } else {
             if (Cursor.visible == false) {
                 Cursor.lockState = CursorLockMode.None;
@@ -46,40 +48,42 @@ public class PlayerController : MonoBehaviour {
         GUI.Box(new Rect(10, 10, 100, 24), "Energy: " + currentEnergy);
     }
 
-    // Teleport the player when they click on a new tile. This gets called by the tile
-    // clicked on.
-    public void Teleport(GameObject newTile) {
-        if (currentEnergy >= teleportCost) {
-            // Don't allow the player to teleport to the tile they are currently on
-            // because that's silly.
-            if (myTile.transform.position != newTile.transform.position) {
-                currentEnergy -= teleportCost;
-                myTile = newTile;
-                transform.position = newTile.transform.position;
-            }
+    public GameObject BuildShell(GameObject tile) {
+        if (currentEnergy >= createShellCost) {
+            currentEnergy -= createShellCost;
+            return Instantiate(shell, tile.transform.position, Quaternion.identity).gameObject;
         }
+        return null;
     }
 
-    private void mouseLook() {
+    public void AbsorbedShell() {
+        currentEnergy += createShellCost;
+    }
+
+    public void Posess(GameObject shell) {
+        currentShell.GetComponent<ShellController>().posessed = false;
+        currentShell = shell;
+        currentShell.GetComponent<ShellController>().posessed = true;
+        transform.position = new Vector3(shell.transform.position.x, shell.transform.position.y + heightOfPlayersEyes, shell.transform.position.z);
+        transform.rotation = shell.transform.rotation;
+        // TODO: need the shell to track it's own rotation based on input axis, then copy the cumulative offsets over here on teleport
+    }
+
+    private void MouseLook() {
         // Get the raw mouse input
-        rotationX += Input.GetAxis("Mouse X") * lookSensitivity;
-        rotationY += Input.GetAxis("Mouse Y") * lookSensitivity;
+        horizontalRotation += Input.GetAxis("Mouse X") * lookSensitivity;
+        verticalRotation += Input.GetAxis("Mouse Y") * lookSensitivity;
+        horizontalRotation = ClampAngle(horizontalRotation, -360f, 360f);
+        verticalRotation = ClampAngle(verticalRotation, lookDownMaxAngle, lookUpMaxAngle);
 
         // Calculate quats from the clamped average rotation for each axis
-        Quaternion xQuat = Quaternion.AngleAxis(
-            ClampAngle(GetAvgRot(rotationX, rotArrayX), -360f, 360f),
-            Vector3.up);
-        Quaternion yQuat = Quaternion.AngleAxis(
-            ClampAngle(GetAvgRot(rotationY, rotArrayY), lookDownMaxAngle, lookUpMaxAngle),
-            Vector3.left);
+        Quaternion xQuat = Quaternion.AngleAxis(GetAvgRot(horizontalRotation, rotArrayX), Vector3.up);
+        Quaternion yQuat = Quaternion.AngleAxis(GetAvgRot(verticalRotation, rotArrayY), Vector3.left);
 
-        // Rotate the camera and the shell on x-axis
-        transform.localRotation = originalShellRotation * xQuat;
-
-        // Rotate only the camera on the y-axis
-        if (childCamera) {
-            childCamera.transform.localRotation = originalCameraRotation * yQuat;
-        }
+        // Rotate the player
+        transform.rotation = originalRotation * xQuat * yQuat;
+        // Also rotate the current shell on x only
+        currentShell.GetComponent<ShellController>().Rotate(xQuat);
     }
 
     // Returns the average of the rotations stored in the rotation frame buffer

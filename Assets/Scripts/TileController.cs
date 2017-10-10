@@ -1,11 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TileController : MonoBehaviour {
     public int bumpSteps = 30;
     public float bumpAmount = 0.005f;
     public float bumpWait = 0.005f;
+    public GameObject objectOnTop;
 
     private Renderer rend;
     private Color originalColor;
@@ -34,8 +34,32 @@ public class TileController : MonoBehaviour {
     }
 
     public void OnMouseOver() {
-        if (Input.GetMouseButtonDown(0)) {
-            playerController.Teleport(gameObject);
+        //if (Input.GetMouseButtonDown(0)) {
+        //    playerController.Teleport(gameObject);
+        //}
+        // Absorb whatever is on the tile
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            if(objectOnTop) {
+                switch(objectOnTop.name) {
+                    case ShellController.SHELL_CLONE:
+                        // Basically prevent the player from absorbing the shell they are currently in
+                        if (objectOnTop.name == ShellController.SHELL_CLONE &&
+                            objectOnTop.GetComponent<ShellController>().posessed) {
+                            break;
+                        }
+                        Destroy(objectOnTop);
+                        objectOnTop = null;
+                        playerController.AbsorbedShell();
+                        break;
+                }
+            }
+        }
+
+        // Create a new shell
+        if (Input.GetKeyDown(KeyCode.W)) {
+            if (!(objectOnTop && objectOnTop.name == ShellController.SHELL_CLONE)) {
+                objectOnTop = playerController.BuildShell(gameObject);
+            }
         }
     }
 
