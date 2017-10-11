@@ -21,7 +21,7 @@ public class ObjectStackingManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q)) {
             if (!objectOnTop) {
                 if(playerController.BuildPlatform()) {
-                    objectOnTop = Instantiate(sceneController.platformPrefab, transform.position, Quaternion.identity).gameObject;
+                    objectOnTop = Instantiate(sceneController.platformPrefab, TopOfSelf(), Quaternion.identity).gameObject;
                 }
             }
         }
@@ -30,7 +30,7 @@ public class ObjectStackingManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.W)) {
             if (!objectOnTop) {
                 if (playerController.BuildShell()) {
-                    objectOnTop = Instantiate(sceneController.shellPrefab, transform.position, Quaternion.identity).gameObject;
+                    objectOnTop = Instantiate(sceneController.shellPrefab, TopOfSelf(), Quaternion.identity).gameObject;
                 }
             }
         }
@@ -40,5 +40,12 @@ public class ObjectStackingManager : MonoBehaviour {
     public void RemoveObjectOnTop() {
         Destroy(objectOnTop);
         objectOnTop = null;
+    }
+
+    private Vector3 TopOfSelf() {
+        return new Vector3(
+            transform.position.x,
+            GetComponent<BoxCollider>().bounds.size.y + transform.position.y,
+            transform.position.z);
     }
 }
