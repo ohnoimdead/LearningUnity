@@ -12,12 +12,8 @@ public class PlayerController : MouseLookBehavior {
     [HideInInspector]
     public GameObject currentShell;
 
-    private SceneController sceneController;
-
     public override void Start() {
         base.Start();
-
-        sceneController = GameObject.FindGameObjectWithTag("SceneController").GetComponent<SceneController>();
 
         // Create the initial shell
         currentShell = Instantiate(sceneController.shellPrefab, startingTile.transform.position, Quaternion.identity).gameObject;

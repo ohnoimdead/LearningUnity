@@ -36,12 +36,11 @@ public class ObjectStackingManager : MonoBehaviour {
         }
     }
 
-    // Called when the player absorbs an object
-    public void RemoveObjectOnTop() {
-        Destroy(objectOnTop);
-        objectOnTop = null;
+    public bool HasObjectOnTop() {
+        return objectOnTop != null;
     }
 
+    // Get the point on top of the current object by using the box collider's size
     private Vector3 TopOfSelf() {
         return new Vector3(
             transform.position.x,

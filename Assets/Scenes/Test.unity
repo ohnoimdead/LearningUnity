@@ -1289,6 +1289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5745c9d8bb09c34c990c04e6f79db08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookSensitivity: 5
+  lookFrameBuffer: 10
+  lookUpMaxAngle: 60
+  lookDownMaxAngle: -60
   shellPrefab: {fileID: 4900848640758424, guid: b43ea4cb2a47a8b44949167bdbe6da67,
     type: 2}
   platformPrefab: {fileID: 4750885005184862, guid: 7987470cf515eac4988de694cc4e24c7,
@@ -1854,10 +1858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7fd3a2b69fae4489438680c010206f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSensitivity: 5
-  lookFrameBuffer: 5
-  lookUpMaxAngle: 60
-  lookDownMaxAngle: -60
   xQuat: {x: 0, y: 0, z: 0, w: 0}
   yQuat: {x: 0, y: 0, z: 0, w: 0}
   onlyRotateX: 0
@@ -1866,11 +1866,11 @@ MonoBehaviour:
   rotArrayX: []
   rotArrayY: []
   heightOfPlayersEyes: 1.62
-  currentTile: {fileID: 1874640622}
-  currentShell: {fileID: 0}
+  startingTile: {fileID: 1874640622}
   currentEnergy: 20
   shellCost: 3
   platformCost: 2
+  currentShell: {fileID: 0}
 --- !u!81 &1406891052
 AudioListener:
   m_ObjectHideFlags: 0

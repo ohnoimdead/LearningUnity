@@ -12,9 +12,9 @@ public class TileController : MonoBehaviour {
 	}
 
     public void OnMouseOver() {
-        // Absorb whatever is on the tile
+        // Absorb whatever is on the tile, starting at the top
         if (Input.GetKeyDown(KeyCode.Space)) {
-            objectOnTop = GetComponent<ObjectStackingManager>().objectOnTop;
+            objectOnTop = RecurseToTop(gameObject);
             if(objectOnTop) {
                 switch(objectOnTop.name) {
                     case SceneController.SHELL_CLONE:
@@ -23,14 +23,23 @@ public class TileController : MonoBehaviour {
                             break;
                         }
                         playerController.AbsorbedShell();
-                        GetComponent<ObjectStackingManager>().RemoveObjectOnTop();
+                        GameObject.Destroy(objectOnTop);
                         break;
                     case SceneController.PLATFORM_CLONE:
                         playerController.AbsorbedPlatform();
-                        GetComponent<ObjectStackingManager>().RemoveObjectOnTop();
+                        GameObject.Destroy(objectOnTop);
                         break;
                 }
             }
+        }
+    }
+
+    private GameObject RecurseToTop(GameObject currentObject) {
+        ObjectStackingManager sm = currentObject.GetComponent<ObjectStackingManager>();
+        if (!(sm && sm.HasObjectOnTop())) {
+            return currentObject;
+        } else {
+            return RecurseToTop(sm.objectOnTop);
         }
     }
 }

@@ -14,7 +14,7 @@ public class MouseLookBehavior : MonoBehaviour {
     public List<float> rotArrayY = new List<float>();
 
     private Quaternion originalRotation;
-    private SceneController sceneController;
+    public SceneController sceneController;
 
     public virtual void Start() {
         sceneController = GameObject.FindGameObjectWithTag("SceneController").GetComponent<SceneController>();
