@@ -1249,6 +1249,50 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &992933286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 992933287}
+  - component: {fileID: 992933288}
+  m_Layer: 0
+  m_Name: SceneControllerHolder
+  m_TagString: SceneController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &992933287
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 992933286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &992933288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 992933286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5745c9d8bb09c34c990c04e6f79db08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shellPrefab: {fileID: 4900848640758424, guid: b43ea4cb2a47a8b44949167bdbe6da67,
+    type: 2}
+  platformPrefab: {fileID: 4750885005184862, guid: 7987470cf515eac4988de694cc4e24c7,
+    type: 2}
 --- !u!1001 &1043671273
 Prefab:
   m_ObjectHideFlags: 0
@@ -1793,7 +1837,7 @@ GameObject:
   - component: {fileID: 1406891052}
   - component: {fileID: 1406891051}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1827,10 +1871,6 @@ MonoBehaviour:
   currentEnergy: 20
   shellCost: 3
   platformCost: 2
-  shellPrefab: {fileID: 4900848640758424, guid: b43ea4cb2a47a8b44949167bdbe6da67,
-    type: 2}
-  platformPrefab: {fileID: 4750885005184862, guid: 7987470cf515eac4988de694cc4e24c7,
-    type: 2}
 --- !u!81 &1406891052
 AudioListener:
   m_ObjectHideFlags: 0

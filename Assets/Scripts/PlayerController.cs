@@ -1,26 +1,27 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
 public class PlayerController : MouseLookBehavior {
     public float heightOfPlayersEyes = 1.62f;
+    public GameObject startingTile;
 
     // Gameplay stuff
-    public GameObject currentTile;
-    public GameObject currentShell;
     public int currentEnergy = 5;
     public int shellCost = 3;
     public int platformCost = 2;
 
-    // References to prefabs
-    public Transform shellPrefab;
-    public Transform platformPrefab;
+    [HideInInspector]
+    public GameObject currentShell;
+
+    private SceneController sceneController;
 
     public override void Start() {
         base.Start();
 
+        sceneController = GameObject.FindGameObjectWithTag("SceneController").GetComponent<SceneController>();
+
         // Create the initial shell
-        currentShell = Instantiate(shellPrefab, currentTile.transform.position, Quaternion.identity).gameObject;
-        currentTile.GetComponent<ObjectStackingManager>().objectOnTop = currentShell;
+        currentShell = Instantiate(sceneController.shellPrefab, startingTile.transform.position, Quaternion.identity).gameObject;
+        startingTile.GetComponent<ObjectStackingManager>().objectOnTop = currentShell;
         currentShell.GetComponent<ShellController>().posessed = true;
     }
 
@@ -41,20 +42,20 @@ public class PlayerController : MouseLookBehavior {
         GUI.Box(new Rect(10, 10, 100, 24), "Energy: " + currentEnergy);
     }
 
-    public GameObject BuildShell(GameObject tile) {
+    public bool BuildShell() {
         if (currentEnergy >= shellCost) {
             currentEnergy -= shellCost;
-            return Instantiate(shellPrefab, tile.transform.position, Quaternion.identity).gameObject;
+            return true;
         }
-        return null;
+        return false;
     }
 
-    public GameObject BuildPlatform(GameObject tile) {
+    public bool BuildPlatform() {
         if (currentEnergy >= platformCost) {
             currentEnergy -= platformCost;
-            return Instantiate(platformPrefab, tile.transform.position, Quaternion.identity).gameObject;
+            return true;
         }
-        return null;
+        return false;
     }
 
     public void AbsorbedShell() {
@@ -80,4 +81,3 @@ public class PlayerController : MouseLookBehavior {
         ResetLook(shell.GetComponent<ShellController>().horizontalRotation, shell.GetComponent<ShellController>().verticalRotation);
     }
 }
-

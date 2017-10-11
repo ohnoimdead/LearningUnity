@@ -1,11 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ShellController : MouseLookBehavior {
-    // The name Unity gives shells instantiated at runtime
-    public const string SHELL_CLONE = "Shell(Clone)";
-
     // Is the player in this shell?
     public bool posessed = false;
 

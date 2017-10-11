@@ -17,7 +17,7 @@ public class TileController : MonoBehaviour {
             objectOnTop = GetComponent<ObjectStackingManager>().objectOnTop;
             if(objectOnTop) {
                 switch(objectOnTop.name) {
-                    case ShellController.SHELL_CLONE:
+                    case SceneController.SHELL_CLONE:
                         // Basically prevent the player from absorbing the shell they are currently in
                         if (objectOnTop.GetComponent<ShellController>().posessed) {
                             break;
@@ -25,7 +25,7 @@ public class TileController : MonoBehaviour {
                         playerController.AbsorbedShell();
                         GetComponent<ObjectStackingManager>().RemoveObjectOnTop();
                         break;
-                    case PlatformController.PLATFORM_CLONE:
+                    case SceneController.PLATFORM_CLONE:
                         playerController.AbsorbedPlatform();
                         GetComponent<ObjectStackingManager>().RemoveObjectOnTop();
                         break;

@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 
 public class MouseLookBehavior : MonoBehaviour {
-    public float lookSensitivity = 5f;
-    public int lookFrameBuffer = 10;
-    public float lookUpMaxAngle = 60f;
-    public float lookDownMaxAngle = -60f;
-
     [HideInInspector]
     public Quaternion xQuat, yQuat;
     [HideInInspector]
@@ -19,17 +14,23 @@ public class MouseLookBehavior : MonoBehaviour {
     public List<float> rotArrayY = new List<float>();
 
     private Quaternion originalRotation;
+    private SceneController sceneController;
 
     public virtual void Start() {
+        sceneController = GameObject.FindGameObjectWithTag("SceneController").GetComponent<SceneController>();
+
         originalRotation = transform.rotation;
     }
 
     public void MouseLook() {
         // Get the raw mouse input
-        horizontalRotation += Input.GetAxis("Mouse X") * lookSensitivity;
-        verticalRotation += Input.GetAxis("Mouse Y") * lookSensitivity;
+        horizontalRotation += Input.GetAxis("Mouse X") * sceneController.lookSensitivity;
+        verticalRotation += Input.GetAxis("Mouse Y") * sceneController.lookSensitivity;
         horizontalRotation = ClampAngle(horizontalRotation, -360f, 360f);
-        verticalRotation = ClampAngle(verticalRotation, lookDownMaxAngle, lookUpMaxAngle);
+        verticalRotation = ClampAngle(
+            verticalRotation,
+            sceneController.lookDownMaxAngle,
+            sceneController.lookUpMaxAngle);
 
         // Calculate quats from the clamped average rotation for each axis
         xQuat = Quaternion.AngleAxis(GetAvgRot(horizontalRotation, rotArrayX), Vector3.up);
@@ -59,7 +60,7 @@ public class MouseLookBehavior : MonoBehaviour {
         rotArray.Add(rot);
 
         // If our frame buffer is beyond max size, pop old values off the front (FIFO queue)
-        while (rotArray.Count > lookFrameBuffer) {
+        while (rotArray.Count > sceneController.lookFrameBuffer) {
             rotArray.RemoveAt(0);
         }
 
