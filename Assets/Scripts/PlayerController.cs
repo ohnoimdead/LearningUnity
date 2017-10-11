@@ -9,9 +9,11 @@ public class PlayerController : MouseLookBehavior {
     public GameObject currentShell;
     public int currentEnergy = 5;
     public int shellCost = 3;
+    public int platformCost = 2;
 
     // References to prefabs
     public Transform shellPrefab;
+    public Transform platformPrefab;
 
     public override void Start() {
         base.Start();
@@ -47,8 +49,20 @@ public class PlayerController : MouseLookBehavior {
         return null;
     }
 
+    public GameObject BuildPlatform(GameObject tile) {
+        if (currentEnergy >= platformCost) {
+            currentEnergy -= platformCost;
+            return Instantiate(platformPrefab, tile.transform.position, Quaternion.identity).gameObject;
+        }
+        return null;
+    }
+
     public void AbsorbedShell() {
         currentEnergy += shellCost;
+    }
+
+    public void AbsorbedPlatform() {
+        currentEnergy += platformCost;
     }
 
     // Take posession of shell when clicked on

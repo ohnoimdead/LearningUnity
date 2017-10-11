@@ -1826,7 +1826,10 @@ MonoBehaviour:
   currentShell: {fileID: 0}
   currentEnergy: 20
   shellCost: 3
+  platformCost: 2
   shellPrefab: {fileID: 4900848640758424, guid: b43ea4cb2a47a8b44949167bdbe6da67,
+    type: 2}
+  platformPrefab: {fileID: 4750885005184862, guid: 7987470cf515eac4988de694cc4e24c7,
     type: 2}
 --- !u!81 &1406891052
 AudioListener:

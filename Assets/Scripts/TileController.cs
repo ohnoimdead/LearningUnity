@@ -34,30 +34,38 @@ public class TileController : MonoBehaviour {
     }
 
     public void OnMouseOver() {
-        //if (Input.GetMouseButtonDown(0)) {
-        //    playerController.Teleport(gameObject);
-        //}
         // Absorb whatever is on the tile
         if (Input.GetKeyDown(KeyCode.Space)) {
             if(objectOnTop) {
                 switch(objectOnTop.name) {
                     case ShellController.SHELL_CLONE:
                         // Basically prevent the player from absorbing the shell they are currently in
-                        if (objectOnTop.name == ShellController.SHELL_CLONE &&
-                            objectOnTop.GetComponent<ShellController>().posessed) {
+                        if (objectOnTop.GetComponent<ShellController>().posessed) {
                             break;
                         }
                         Destroy(objectOnTop);
                         objectOnTop = null;
                         playerController.AbsorbedShell();
                         break;
+                    case PlatformController.PLATFORM_CLONE:
+                        Destroy(objectOnTop);
+                        objectOnTop = null;
+                        playerController.AbsorbedPlatform();
+                        break;
                 }
+            }
+        }
+
+        // Create a new platform
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            if (!objectOnTop) {
+                objectOnTop = playerController.BuildPlatform(gameObject);
             }
         }
 
         // Create a new shell
         if (Input.GetKeyDown(KeyCode.W)) {
-            if (!(objectOnTop && objectOnTop.name == ShellController.SHELL_CLONE)) {
+            if (!objectOnTop) {
                 objectOnTop = playerController.BuildShell(gameObject);
             }
         }
