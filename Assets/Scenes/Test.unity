@@ -2038,9 +2038,6 @@ MonoBehaviour:
   heightOfPlayersEyes: 1.62
   startingTile: {fileID: 1874640622}
   currentEnergy: 20
-  shellCost: 3
-  platformCost: 2
-  gemCost: 1
   currentShell: {fileID: 0}
 --- !u!81 &1406891052
 AudioListener:
@@ -2357,7 +2354,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4553784217928584, guid: a2a7d474046b0564a95718b365211bce, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4553784217928584, guid: a2a7d474046b0564a95718b365211bce, type: 2}
       propertyPath: m_LocalRotation.z
@@ -2365,7 +2362,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4553784217928584, guid: a2a7d474046b0564a95718b365211bce, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4553784217928584, guid: a2a7d474046b0564a95718b365211bce, type: 2}
       propertyPath: m_RootOrder
@@ -2373,17 +2370,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114058896466278240, guid: a2a7d474046b0564a95718b365211bce,
         type: 2}
-      propertyPath: rotationSpeed
+      propertyPath: surveySpeed
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553784217928584, guid: a2a7d474046b0564a95718b365211bce, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20080157587910424, guid: a2a7d474046b0564a95718b365211bce,
-        type: 2}
-      propertyPath: field of view
-      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2a7d474046b0564a95718b365211bce, type: 2}

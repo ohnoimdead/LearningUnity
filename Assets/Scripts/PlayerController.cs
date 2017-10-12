@@ -4,11 +4,7 @@ public class PlayerController : MouseLookBehavior {
     public float heightOfPlayersEyes = 1.62f;
     public GameObject startingTile;
 
-    // Gameplay stuff
     public int currentEnergy = 5;
-    public int shellCost = 3;
-    public int platformCost = 2;
-    public int gemCost = 1;
 
     [HideInInspector]
     public GameObject currentShell;
@@ -40,31 +36,32 @@ public class PlayerController : MouseLookBehavior {
     }
 
     public bool BuildShell() {
-        if (currentEnergy >= shellCost) {
-            currentEnergy -= shellCost;
+        if (currentEnergy >= SceneController.SHELL_COST) {
+            currentEnergy -= SceneController.SHELL_COST;
             return true;
         }
         return false;
     }
 
     public bool BuildPlatform() {
-        if (currentEnergy >= platformCost) {
-            currentEnergy -= platformCost;
+        if (currentEnergy >= SceneController.PLATFORM_COST) {
+            currentEnergy -= SceneController.PLATFORM_COST;
             return true;
         }
         return false;
     }
 
-    public void AbsorbedShell() {
-        currentEnergy += shellCost;
+    public void AbsorbObject(GameObject obj) {
+        currentEnergy += obj.GetComponent<HealthManager>().health;
     }
 
-    public void AbsorbedPlatform() {
-        currentEnergy += platformCost;
-    }
+    public void ISeeYou() {
+        currentEnergy -= 1;
 
-    public void AbsorbedGem() {
-        currentEnergy += gemCost;
+        if (currentEnergy <= 0) {
+            Debug.Log("game over");
+            Time.timeScale = 0;
+        }
     }
 
     // Take posession of shell when clicked on

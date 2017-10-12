@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65617714212451816}
   - component: {fileID: 114855534106187400}
   - component: {fileID: 114554542878142356}
+  - component: {fileID: 114611416669295700}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Watchable
@@ -107,6 +108,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectOnTop: {fileID: 0}
+--- !u!114 &114611416669295700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1793557123718082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21bcd6168e769b7428d87ef1f9266431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
 --- !u!114 &114855534106187400
 MonoBehaviour:
   m_ObjectHideFlags: 1

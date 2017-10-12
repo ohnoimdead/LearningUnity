@@ -16,24 +16,11 @@ public class TileController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             objectOnTop = RecurseToTop(gameObject);
             if(objectOnTop) {
-                switch(objectOnTop.name) {
-                    case SceneController.SHELL_CLONE:
-                        // Basically prevent the player from absorbing the shell they are currently in
-                        if (objectOnTop.GetComponent<ShellController>().posessed) {
-                            break;
-                        }
-                        playerController.AbsorbedShell();
-                        GameObject.Destroy(objectOnTop);
-                        break;
-                    case SceneController.PLATFORM_CLONE:
-                        playerController.AbsorbedPlatform();
-                        GameObject.Destroy(objectOnTop);
-                        break;
-                    case SceneController.GEM:
-                        playerController.AbsorbedGem();
-                        GameObject.Destroy(objectOnTop);
-                        break;
+                if (objectOnTop.name == SceneController.SHELL_CLONE && objectOnTop.GetComponent<ShellController>().posessed) {
+                    return;
                 }
+                playerController.AbsorbObject(objectOnTop);
+                GameObject.Destroy(objectOnTop);
             }
         }
     }

@@ -4,6 +4,7 @@ public class ShellController : MouseLookBehavior {
     // Is the player in this shell?
     public bool posessed = false;
 
+    private int health = SceneController.SHELL_COST;
     private GameObject player;
 
     public override void Start() {
@@ -22,6 +23,14 @@ public class ShellController : MouseLookBehavior {
     public void Update() {
         if (Input.GetMouseButton(1) && posessed) {
             MouseLook();
+        }
+    }
+
+    public void ISeeYou() {
+        health -= 1;
+
+        if (health <= 0) {
+            GameObject.Destroy(gameObject);
         }
     }
 }
