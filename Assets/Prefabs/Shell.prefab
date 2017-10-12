@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 64352997335581094}
   m_Layer: 0
   m_Name: Shell
-  m_TagString: Untagged
+  m_TagString: Watchable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,4 +108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e03f6d2e1bb5243abcfa9196e61e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xQuat: {x: 0, y: 0, z: 0, w: 0}
+  yQuat: {x: 0, y: 0, z: 0, w: 0}
+  onlyRotateX: 0
+  horizontalRotation: 0
+  verticalRotation: 0
+  rotArrayX: []
+  rotArrayY: []
+  sceneController: {fileID: 0}
   posessed: 0
