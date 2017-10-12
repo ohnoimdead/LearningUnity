@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 public class ObjectStackingManager : MonoBehaviour {
-    [HideInInspector]
     public GameObject objectOnTop;
 
     private SceneController sceneController;

@@ -29,6 +29,10 @@ public class TileController : MonoBehaviour {
                         playerController.AbsorbedPlatform();
                         GameObject.Destroy(objectOnTop);
                         break;
+                    case SceneController.GEM:
+                        playerController.AbsorbedGem();
+                        GameObject.Destroy(objectOnTop);
+                        break;
                 }
             }
         }

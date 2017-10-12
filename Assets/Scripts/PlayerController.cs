@@ -8,6 +8,7 @@ public class PlayerController : MouseLookBehavior {
     public int currentEnergy = 5;
     public int shellCost = 3;
     public int platformCost = 2;
+    public int gemCost = 1;
 
     [HideInInspector]
     public GameObject currentShell;
@@ -60,6 +61,10 @@ public class PlayerController : MouseLookBehavior {
 
     public void AbsorbedPlatform() {
         currentEnergy += platformCost;
+    }
+
+    public void AbsorbedGem() {
+        currentEnergy += gemCost;
     }
 
     // Take posession of shell when clicked on

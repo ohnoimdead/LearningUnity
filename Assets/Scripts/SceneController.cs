@@ -3,6 +3,7 @@
 public class SceneController : MonoBehaviour {
     public const string SHELL_CLONE = "Shell(Clone)";
     public const string PLATFORM_CLONE = "Platform(Clone)";
+    public const string GEM = "Gem";
 
     [Header("MouseLook")]
     public float lookSensitivity = 5f;
