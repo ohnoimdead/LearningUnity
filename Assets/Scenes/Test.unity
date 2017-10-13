@@ -2043,6 +2043,7 @@ MonoBehaviour:
   heightOfPlayersEyes: 1.62
   startingTile: {fileID: 1874640622}
   currentEnergy: 20
+  clearSeenMessageTime: 3
   currentShell: {fileID: 0}
 --- !u!81 &1406891052
 AudioListener:

@@ -17,11 +17,11 @@ public class ColorBump : MonoBehaviour {
 	}
 
     public void OnMouseEnter() {
-        StartCoroutine("BumpColor");
+        StartCoroutine(BumpColor());
     }
 
     public void OnMouseExit() {
-        StopCoroutine("BumpColor");
+        StopCoroutine(BumpColor());
         rend.material.color = originalColor;
     }
 

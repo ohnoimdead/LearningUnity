@@ -1,13 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerController : MouseLookBehavior {
+    public const string SEEN_MESSAGE = "HIDE!!";
+
     public float heightOfPlayersEyes = 1.62f;
     public GameObject startingTile;
 
     public int currentEnergy = 5;
+    public float clearSeenMessageTime = 5.0f;
 
     [HideInInspector]
     public GameObject currentShell;
+
+    private string seenMessage = "";
 
     public override void Start() {
         base.Start();
@@ -34,6 +40,7 @@ public class PlayerController : MouseLookBehavior {
 
     void OnGUI() {
         GUI.Box(new Rect(10, 10, 100, 24), "Energy: " + currentEnergy);
+        GUI.Box(new Rect(120, 10, 100, 24), seenMessage);
     }
 
     public bool BuildShell() {
@@ -60,11 +67,14 @@ public class PlayerController : MouseLookBehavior {
 
     public void ISeeYou() {
         currentEnergy -= 1;
+        seenMessage = SEEN_MESSAGE;
 
         if (currentEnergy <= 0) {
             Debug.Log("game over");
             Time.timeScale = 0;
         }
+
+        StartCoroutine(ClearSeenMessage());
     }
 
     // Take posession of shell when clicked on
@@ -80,5 +90,10 @@ public class PlayerController : MouseLookBehavior {
 
         // Make look seemless after posession
         ResetLook(shell.GetComponent<ShellController>().horizontalRotation, shell.GetComponent<ShellController>().verticalRotation);
+    }
+
+    private IEnumerator ClearSeenMessage() {
+        yield return new WaitForSeconds(clearSeenMessageTime);
+        seenMessage = "";
     }
 }
