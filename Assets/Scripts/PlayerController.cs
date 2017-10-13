@@ -14,6 +14,7 @@ public class PlayerController : MouseLookBehavior {
 
         // Create the initial shell
         currentShell = Instantiate(sceneController.shellPrefab, startingTile.transform.position, Quaternion.identity).gameObject;
+        currentShell.name = SceneController.SHELL;
         startingTile.GetComponent<ObjectStackingManager>().objectOnTop = currentShell;
         currentShell.GetComponent<ShellController>().posessed = true;
     }
