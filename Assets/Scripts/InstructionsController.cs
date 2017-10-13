@@ -8,14 +8,18 @@ public class InstructionsController : MonoBehaviour {
 
 You must clear the land of the evil WATCHER!
 That's the big eye looking thing.
-If it sees you it will steal your energy.
+If it sees the shell you possess it will steal your energy.
 
 To be rid of the Watcher, you must absorb it.
 Absorb things by pointing at the square they are on and
 hitting the space bar.
 
-To create a body you can possess press W.
-To create a stool to get more height, press Q.
+RMB - Look around
+LMB - Possess shell
+Q - Create a step-stool you can put shells
+    or other step-stools on
+W - Create a shell that you can possess
+
 Watch your energy level and good luck!";
 
     public void OnGUI() {
