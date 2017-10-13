@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21bcd6168e769b7428d87ef1f9266431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitIndicatorSteps: 10
+  hitIndicatorDelay: 0.01
   health: 0
 --- !u!114 &114855534106187400
 MonoBehaviour:
