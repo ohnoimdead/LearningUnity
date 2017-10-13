@@ -13,7 +13,7 @@ public class TileController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             objectOnTop = RecurseToTop(gameObject);
             if(objectOnTop && objectOnTop != gameObject) {
-                if (objectOnTop.name == SceneController.SHELL_CLONE && objectOnTop.GetComponent<ShellController>().posessed) {
+                if (objectOnTop.name == SceneController.SHELL && objectOnTop.GetComponent<ShellController>().posessed) {
                     return;
                 }
                 playerController.AbsorbObject(objectOnTop);

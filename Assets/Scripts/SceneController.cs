@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 public class SceneController : MonoBehaviour {
-    public const string SHELL_CLONE = "Shell(Clone)";
-    public const string PLATFORM_CLONE = "Platform(Clone)";
+    public const string SHELL = "Shell";
+    public const string PLATFORM = "Platform";
     public const string GEM = "Gem";
 
     public const int SHELL_COST = 3;

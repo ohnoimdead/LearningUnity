@@ -21,6 +21,7 @@ public class ObjectStackingManager : MonoBehaviour {
             if (!objectOnTop) {
                 if(playerController.BuildPlatform()) {
                     objectOnTop = Instantiate(sceneController.platformPrefab, TopOfSelf(), Quaternion.identity).gameObject;
+                    objectOnTop.name = SceneController.PLATFORM;
                 }
             }
         }
@@ -30,6 +31,7 @@ public class ObjectStackingManager : MonoBehaviour {
             if (!objectOnTop) {
                 if (playerController.BuildShell()) {
                     objectOnTop = Instantiate(sceneController.shellPrefab, TopOfSelf(), Quaternion.identity).gameObject;
+                    objectOnTop.name = SceneController.SHELL;
                 }
             }
         }
@@ -40,7 +42,11 @@ public class ObjectStackingManager : MonoBehaviour {
     }
 
     public void AddGem() {
+        if (objectOnTop && objectOnTop.name == SceneController.GEM) {
+            return;
+        }
         objectOnTop = Instantiate(sceneController.gemPrefab, TopOfSelf(), Quaternion.identity).gameObject;
+        objectOnTop.name = SceneController.GEM;
     }
 
     // Get the point on top of the current object by using the box collider's size

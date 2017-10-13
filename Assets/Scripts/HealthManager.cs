@@ -6,10 +6,10 @@ public class HealthManager : MonoBehaviour {
 
     public void Start() {
         switch (gameObject.name) {
-            case SceneController.SHELL_CLONE:
+            case SceneController.SHELL:
                 health = SceneController.SHELL_COST;
                 break;
-            case SceneController.PLATFORM_CLONE:
+            case SceneController.PLATFORM:
                 health = SceneController.PLATFORM_COST;
                 break;
             case SceneController.GEM:
@@ -21,7 +21,7 @@ public class HealthManager : MonoBehaviour {
     // Called by the watcher when it sees this object
     public bool ISeeYou() {
         // If we see the shell the player currently posesses, zap the player
-        if (gameObject.name == SceneController.SHELL_CLONE && gameObject.GetComponent<ShellController>().posessed) {
+        if (gameObject.name == SceneController.SHELL && gameObject.GetComponent<ShellController>().posessed) {
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ISeeYou();
             return false;
         } else {

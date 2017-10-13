@@ -10,7 +10,6 @@ public class WatcherController : MonoBehaviour {
     private GameObject[] watchables;
 
     // Variables for determining if a watchable is seen
-    private Vector3 topOfWatchable;
     private Vector3 rayDirection;
 
     public void Start() {
