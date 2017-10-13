@@ -5,17 +5,14 @@ public class TileController : MonoBehaviour {
     private GameObject objectOnTop;
 
 	void Start () {
-        var player = GameObject.FindWithTag("Player");
-        if (player) {
-            playerController = player.GetComponent<PlayerController>();
-        }
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 	}
 
     public void OnMouseOver() {
         // Absorb whatever is on the tile, starting at the top
         if (Input.GetKeyDown(KeyCode.Space)) {
             objectOnTop = RecurseToTop(gameObject);
-            if(objectOnTop) {
+            if(objectOnTop && objectOnTop != gameObject) {
                 if (objectOnTop.name == SceneController.SHELL_CLONE && objectOnTop.GetComponent<ShellController>().posessed) {
                     return;
                 }

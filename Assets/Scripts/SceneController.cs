@@ -18,4 +18,5 @@ public class SceneController : MonoBehaviour {
     [Header("Prefabs")]
     public Transform shellPrefab;
     public Transform platformPrefab;
+    public Transform gemPrefab;
 }

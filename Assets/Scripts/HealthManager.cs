@@ -12,6 +12,9 @@ public class HealthManager : MonoBehaviour {
             case SceneController.PLATFORM_CLONE:
                 health = SceneController.PLATFORM_COST;
                 break;
+            case SceneController.GEM:
+                health = SceneController.GEM_COST;
+                break;
         }
     }
 

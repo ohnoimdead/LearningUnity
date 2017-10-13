@@ -39,6 +39,10 @@ public class ObjectStackingManager : MonoBehaviour {
         return objectOnTop != null;
     }
 
+    public void AddGem() {
+        objectOnTop = Instantiate(sceneController.gemPrefab, TopOfSelf(), Quaternion.identity).gameObject;
+    }
+
     // Get the point on top of the current object by using the box collider's size
     private Vector3 TopOfSelf() {
         return new Vector3(

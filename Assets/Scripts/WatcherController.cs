@@ -12,7 +12,6 @@ public class WatcherController : MonoBehaviour {
     // Variables for determining if a watchable is seen
     private Vector3 topOfWatchable;
     private Vector3 rayDirection;
-    private RaycastHit rayHit;
 
     public void Start() {
         eye = transform.Find("Camera").gameObject.GetComponent<Camera>();
@@ -27,24 +26,52 @@ public class WatcherController : MonoBehaviour {
         watchables = GameObject.FindGameObjectsWithTag("Watchable");
 
         foreach (GameObject watchable in watchables) {
-            // First see what is in the frustum
+            // First see if it's in the frustum
             if (GeometryUtility.TestPlanesAABB(eyeFrustum, watchable.GetComponent<Collider>().bounds)) {
                 // Now see if we can see the top of the object's collider
-                topOfWatchable = new Vector3(
-                    watchable.transform.position.x,
-                    watchable.transform.position.y + watchable.GetComponent<Collider>().bounds.size.y,
-                    watchable.transform.position.z);
-                rayDirection = topOfWatchable - eye.transform.position;
-                if (Physics.Raycast(eye.transform.position, rayDirection, out rayHit)) {
-                    HealthManager hitHealthManager = rayHit.transform.gameObject.GetComponent<HealthManager>();
-                    Debug.Log(hitHealthManager);
+                if (IsObjectSeen(watchable)) {
+                    // Now zap that fucker
+                    HealthManager hitHealthManager = watchable.GetComponent<HealthManager>();
                     if (hitHealthManager) {
-                        hitHealthManager.ISeeYou();
+                        if (hitHealthManager.ISeeYou()) {
+                            // Now that the object has been destroyed, find the tile below this object and give it a gem if empty
+                            GameObject tile = TileBeneath(watchable);
+                            if (tile) {
+                                tile.GetComponent<ObjectStackingManager>().AddGem();
+                            }
+                        }
                         surveying = false; // Stop here until all things are destroyed
                     }
                 }
             }
         }
+    }
+
+    // Can the eye see the top of the object?
+    private bool IsObjectSeen(GameObject watchable) {
+        RaycastHit hitResult;
+        rayDirection = GetTopOfObject(watchable) - eye.transform.position;
+        Physics.Raycast(eye.transform.position, rayDirection, out hitResult);
+        if (hitResult.transform.gameObject.tag == "Watchable") {
+            return true;
+        }
+        return false;
+    }
+
+    private GameObject TileBeneath(GameObject watchable) {
+        RaycastHit hitResult;
+        Physics.Raycast(GetTopOfObject(watchable), Vector3.down, out hitResult);
+        if (hitResult.transform.gameObject.GetComponent<TileController>()) {
+            return hitResult.transform.gameObject;
+        }
+        return null;
+    }
+
+    private Vector3 GetTopOfObject(GameObject obj) {
+        return new Vector3(
+            obj.transform.position.x,
+            obj.transform.position.y + obj.GetComponent<Collider>().bounds.size.y,
+            obj.transform.position.z);
     }
 
     private IEnumerator Survey() {

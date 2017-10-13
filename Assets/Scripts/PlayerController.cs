@@ -52,7 +52,9 @@ public class PlayerController : MouseLookBehavior {
     }
 
     public void AbsorbObject(GameObject obj) {
-        currentEnergy += obj.GetComponent<HealthManager>().health;
+        if (obj.GetComponent<HealthManager>()) {
+            currentEnergy += obj.GetComponent<HealthManager>().health;
+        }
     }
 
     public void ISeeYou() {
