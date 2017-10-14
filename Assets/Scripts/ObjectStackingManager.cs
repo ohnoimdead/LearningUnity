@@ -53,7 +53,7 @@ public class ObjectStackingManager : MonoBehaviour {
     private Vector3 TopOfSelf() {
         return new Vector3(
             transform.position.x,
-            GetComponent<BoxCollider>().bounds.size.y + transform.position.y,
+            GetComponent<BoxCollider>().bounds.size.y + transform.position.y + 0.01f,
             transform.position.z);
     }
 }

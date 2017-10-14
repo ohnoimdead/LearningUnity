@@ -20,7 +20,6 @@ public class WatcherController : MonoBehaviour {
     private void DealWithSeenObjects() {
         surveying = true;
         eyeFrustum = GeometryUtility.CalculateFrustumPlanes(eye);
-        eyeFrustum[3] = new Plane(Vector3.up, 0);
 
         watchables = GameObject.FindGameObjectsWithTag("Watchable");
 

@@ -39,12 +39,12 @@ public class PlayerController : MouseLookBehavior {
     }
 
     void OnGUI() {
-        GUI.Box(new Rect(10, 10, 100, 24), "Energy: " + currentEnergy);
-        GUI.Box(new Rect(120, 10, 100, 24), seenMessage);
+        GUI.Box(new Rect(10, 10, 100, 28), "Energy: " + currentEnergy);
+        GUI.Box(new Rect(120, 10, 100, 28), seenMessage);
     }
 
     public bool BuildShell() {
-        if (currentEnergy >= SceneController.SHELL_COST) {
+        if (currentEnergy > SceneController.SHELL_COST) {
             currentEnergy -= SceneController.SHELL_COST;
             return true;
         }
@@ -52,7 +52,7 @@ public class PlayerController : MouseLookBehavior {
     }
 
     public bool BuildPlatform() {
-        if (currentEnergy >= SceneController.PLATFORM_COST) {
+        if (currentEnergy > SceneController.PLATFORM_COST) {
             currentEnergy -= SceneController.PLATFORM_COST;
             return true;
         }
