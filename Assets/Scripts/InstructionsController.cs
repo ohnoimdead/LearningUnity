@@ -8,7 +8,7 @@ public class InstructionsController : MonoBehaviour {
 
 You must clear the land of the evil WATCHER!
 That's the big eye looking thing.
-If it sees the shell you possess it will steal your energy.
+If it sees the shell you are possessing it will steal your energy.
 
 To be rid of the Watcher, you must absorb it.
 Absorb things by pointing at the square they are on and
@@ -16,9 +16,8 @@ hitting the space bar.
 
 RMB - Look around
 LMB - Possess shell
-Q - Create a step-stool you can put shells
-    or other step-stools on
-W - Create a shell that you can possess
+Q - Create a stackable step-stool (2 energy)
+W - Create a shell that you can possess (3 energy)
 
 Watch your energy level and good luck!";
 
