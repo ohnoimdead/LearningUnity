@@ -26,7 +26,6 @@ public class MouseLookBehavior : MonoBehaviour {
         // Get the raw mouse input
         horizontalRotation += Input.GetAxis("Mouse X") * sceneController.lookSensitivity;
         verticalRotation += Input.GetAxis("Mouse Y") * sceneController.lookSensitivity;
-        horizontalRotation = ClampAngle(horizontalRotation, -360f, 360f);
         verticalRotation = ClampAngle(
             verticalRotation,
             sceneController.lookDownMaxAngle,
