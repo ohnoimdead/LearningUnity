@@ -11,13 +11,14 @@ That's the big eye looking thing.
 If it sees the shell you are possessing it will steal your energy.
 
 To be rid of the Watcher, you must absorb it.
-Absorb things by pointing at the square they are on and
+Absorb things by pointing at the top of the square they are on and
 hitting the space bar.
 
 RMB - Look around
 LMB - Possess shell
 Q - Create a stackable step-stool (2 energy)
 W - Create a shell that you can possess (3 energy)
+SPACE - Absorb object
 
 Watch your energy level and good luck!";
 

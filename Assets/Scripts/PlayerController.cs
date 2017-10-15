@@ -72,6 +72,7 @@ public class PlayerController : MouseLookBehavior {
         if (currentEnergy <= 0) {
             Debug.Log("game over");
             Time.timeScale = 0;
+            sceneController.playing = false;
         }
 
         StartCoroutine(ClearSeenMessage());

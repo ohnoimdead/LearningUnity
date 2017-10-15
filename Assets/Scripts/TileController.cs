@@ -3,25 +3,30 @@
 public class TileController : MonoBehaviour {
     private PlayerController playerController;
     private GameObject objectOnTop;
+    private SceneController sceneController;
 
 	void Start () {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        sceneController = GameObject.FindGameObjectWithTag("SceneController").GetComponent<SceneController>();
 	}
 
     public void OnMouseOver() {
-        // Absorb whatever is on the tile, starting at the top
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            objectOnTop = RecurseToTop(gameObject);
-            if(objectOnTop && objectOnTop != gameObject) {
-                if (objectOnTop.name == SceneController.SHELL && objectOnTop.GetComponent<ShellController>().posessed) {
-                    return;
+        if (sceneController.playing) {
+            // Absorb whatever is on the tile, starting at the top
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                objectOnTop = RecurseToTop(gameObject);
+                if (objectOnTop && objectOnTop != gameObject) {
+                    if (objectOnTop.name == SceneController.SHELL && objectOnTop.GetComponent<ShellController>().posessed) {
+                        return;
+                    }
+                    playerController.AbsorbObject(objectOnTop);
+                    if (objectOnTop.GetComponent<WatcherController>()) {
+                        Debug.Log("game over");
+                        Time.timeScale = 0;
+                        sceneController.playing = false;
+                    }
+                    GameObject.Destroy(objectOnTop);
                 }
-                playerController.AbsorbObject(objectOnTop);
-                if (objectOnTop.GetComponent<WatcherController>()) {
-                    Debug.Log("game over");
-                    Time.timeScale = 0;
-                }
-                GameObject.Destroy(objectOnTop);
             }
         }
     }

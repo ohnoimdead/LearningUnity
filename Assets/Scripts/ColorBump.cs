@@ -6,29 +6,35 @@ public class ColorBump : MonoBehaviour {
     public float bumpAmount = 0.05f;
     public float bumpWait = 0.01f;
 
+    private SceneController sceneController;
     private Renderer rend;
     private Color originalColor;
     private Color colorBump;
     private bool bumping = false;
 
     public void Start () {
+        sceneController = GameObject.FindObjectOfType<SceneController>();
         colorBump = new Color(bumpAmount, bumpAmount, bumpAmount);
         rend = GetComponent<Renderer>();
         originalColor = rend.material.color;
 	}
 
     public void OnMouseEnter() {
-        if (!bumping) {
-            StartCoroutine("BumpColor");
+        if (sceneController.playing) {
+            if (!bumping) {
+                StartCoroutine("BumpColor");
+            }
         }
     }
 
     public void OnMouseExit() {
-        if (bumping) {
-            StopCoroutine("BumpColor");
-            bumping = false;
+        if (sceneController.playing) {
+            if (bumping) {
+                StopCoroutine("BumpColor");
+                bumping = false;
+            }
+            rend.material.color = originalColor;
         }
-        rend.material.color = originalColor;
     }
 
     private IEnumerator BumpColor() {

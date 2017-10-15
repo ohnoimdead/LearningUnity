@@ -9,6 +9,8 @@ public class SceneController : MonoBehaviour {
     public const int PLATFORM_COST = 2;
     public const int GEM_COST = 1;
 
+    public bool playing = false;
+
     [Header("MouseLook")]
     public float lookSensitivity = 5f;
     public int lookFrameBuffer = 10;

@@ -16,22 +16,24 @@ public class ObjectStackingManager : MonoBehaviour {
     }
 
     public void OnMouseOver() {
-        // Create a new platform
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            if (!objectOnTop) {
-                if(playerController.BuildPlatform()) {
-                    objectOnTop = Instantiate(sceneController.platformPrefab, TopOfSelf(), Quaternion.identity).gameObject;
-                    objectOnTop.name = SceneController.PLATFORM;
+        if (sceneController.playing) {
+            // Create a new platform
+            if (Input.GetKeyDown(KeyCode.Q)) {
+                if (!objectOnTop) {
+                    if (playerController.BuildPlatform()) {
+                        objectOnTop = Instantiate(sceneController.platformPrefab, TopOfSelf(), Quaternion.identity).gameObject;
+                        objectOnTop.name = SceneController.PLATFORM;
+                    }
                 }
             }
-        }
 
-        // Create a new shell
-        if (Input.GetKeyDown(KeyCode.W)) {
-            if (!objectOnTop) {
-                if (playerController.BuildShell()) {
-                    objectOnTop = Instantiate(sceneController.shellPrefab, TopOfSelf(), Quaternion.identity).gameObject;
-                    objectOnTop.name = SceneController.SHELL;
+            // Create a new shell
+            if (Input.GetKeyDown(KeyCode.W)) {
+                if (!objectOnTop) {
+                    if (playerController.BuildShell()) {
+                        objectOnTop = Instantiate(sceneController.shellPrefab, TopOfSelf(), Quaternion.identity).gameObject;
+                        objectOnTop.name = SceneController.SHELL;
+                    }
                 }
             }
         }
