@@ -17,6 +17,10 @@ public class TileController : MonoBehaviour {
                     return;
                 }
                 playerController.AbsorbObject(objectOnTop);
+                if (objectOnTop.GetComponent<WatcherController>()) {
+                    Debug.Log("game over");
+                    Time.timeScale = 0;
+                }
                 GameObject.Destroy(objectOnTop);
             }
         }

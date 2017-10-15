@@ -472,6 +472,11 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 034648be031ae8b4bb64184b240c1ee3, type: 2}
+    - target: {fileID: 114793629182407614, guid: 97bc6428bc61a2746b598e60710cc2bc,
+        type: 2}
+      propertyPath: objectOnTop
+      value: 
+      objectReference: {fileID: 688017705}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97bc6428bc61a2746b598e60710cc2bc, type: 2}
   m_IsPrefabParent: 0
@@ -1336,6 +1341,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4385293369297066, guid: 97bc6428bc61a2746b598e60710cc2bc,
     type: 2}
   m_PrefabInternal: {fileID: 338604113}
+--- !u!1 &688017705 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1926093746062398, guid: a2a7d474046b0564a95718b365211bce,
+    type: 2}
+  m_PrefabInternal: {fileID: 825139648}
 --- !u!1001 &689584918
 Prefab:
   m_ObjectHideFlags: 0
