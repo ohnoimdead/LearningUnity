@@ -21,9 +21,10 @@ W - Create a shell that you can possess (3 energy)
 SPACE - Absorb object
 
 Watch your energy level and good luck!";
+    private GUIStyle centeredStyle;
 
     public void OnGUI() {
-        var centeredStyle = GUI.skin.GetStyle("Box");
+        centeredStyle = GUI.skin.GetStyle("Box");
         centeredStyle.alignment = TextAnchor.MiddleCenter;
         centeredStyle.fontSize = 18;
 

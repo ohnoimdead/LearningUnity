@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 public class SceneController : MonoBehaviour {
+    public enum GameState { Starting, Playing, Lose, Win };
+
     public const string SHELL = "Shell";
     public const string PLATFORM = "Platform";
     public const string GEM = "Gem";
@@ -9,7 +11,7 @@ public class SceneController : MonoBehaviour {
     public const int PLATFORM_COST = 2;
     public const int GEM_COST = 1;
 
-    public bool playing = false;
+    public GameState gameState;
 
     [Header("MouseLook")]
     public float lookSensitivity = 5f;

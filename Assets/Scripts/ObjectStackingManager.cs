@@ -16,7 +16,7 @@ public class ObjectStackingManager : MonoBehaviour {
     }
 
     public void OnMouseOver() {
-        if (sceneController.playing) {
+        if (sceneController.gameState == SceneController.GameState.Playing) {
             // Create a new platform
             if (Input.GetKeyDown(KeyCode.Q)) {
                 if (!objectOnTop) {

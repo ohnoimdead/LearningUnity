@@ -23,23 +23,25 @@ public class MouseLookBehavior : MonoBehaviour {
     }
 
     public void MouseLook() {
-        // Get the raw mouse input
-        horizontalRotation += Input.GetAxis("Mouse X") * sceneController.lookSensitivity;
-        verticalRotation += Input.GetAxis("Mouse Y") * sceneController.lookSensitivity;
-        verticalRotation = ClampAngle(
-            verticalRotation,
-            sceneController.lookDownMaxAngle,
-            sceneController.lookUpMaxAngle);
+        if (sceneController.gameState == SceneController.GameState.Playing) {
+            // Get the raw mouse input
+            horizontalRotation += Input.GetAxis("Mouse X") * sceneController.lookSensitivity;
+            verticalRotation += Input.GetAxis("Mouse Y") * sceneController.lookSensitivity;
+            verticalRotation = ClampAngle(
+                verticalRotation,
+                sceneController.lookDownMaxAngle,
+                sceneController.lookUpMaxAngle);
 
-        // Calculate quats from the clamped average rotation for each axis
-        xQuat = Quaternion.AngleAxis(GetAvgRot(horizontalRotation, rotArrayX), Vector3.up);
-        yQuat = Quaternion.AngleAxis(GetAvgRot(verticalRotation, rotArrayY), Vector3.left);
+            // Calculate quats from the clamped average rotation for each axis
+            xQuat = Quaternion.AngleAxis(GetAvgRot(horizontalRotation, rotArrayX), Vector3.up);
+            yQuat = Quaternion.AngleAxis(GetAvgRot(verticalRotation, rotArrayY), Vector3.left);
 
-        // Rotate the player
-        if (onlyRotateX) {
-            transform.rotation = originalRotation * xQuat;
-        } else {
-            transform.rotation = originalRotation * xQuat * yQuat;
+            // Rotate the player
+            if (onlyRotateX) {
+                transform.rotation = originalRotation * xQuat;
+            } else {
+                transform.rotation = originalRotation * xQuat * yQuat;
+            }
         }
     }
 

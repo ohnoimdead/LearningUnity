@@ -20,7 +20,7 @@ public class ColorBump : MonoBehaviour {
 	}
 
     public void OnMouseEnter() {
-        if (sceneController.playing) {
+        if (sceneController.gameState == SceneController.GameState.Playing) {
             if (!bumping) {
                 StartCoroutine("BumpColor");
             }
@@ -28,7 +28,7 @@ public class ColorBump : MonoBehaviour {
     }
 
     public void OnMouseExit() {
-        if (sceneController.playing) {
+        if (sceneController.gameState == SceneController.GameState.Playing) {
             if (bumping) {
                 StopCoroutine("BumpColor");
                 bumping = false;

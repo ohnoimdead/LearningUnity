@@ -14,6 +14,7 @@ public class PlayerController : MouseLookBehavior {
     public GameObject currentShell;
 
     private string seenMessage = "";
+    private GUIStyle style;
 
     public override void Start() {
         base.Start();
@@ -39,6 +40,9 @@ public class PlayerController : MouseLookBehavior {
     }
 
     void OnGUI() {
+        style = GUI.skin.GetStyle("Box");
+        style.fontSize = 18;
+
         GUI.Box(new Rect(10, 10, 100, 28), "Energy: " + currentEnergy);
         GUI.Box(new Rect(120, 10, 100, 28), seenMessage);
     }
@@ -70,9 +74,8 @@ public class PlayerController : MouseLookBehavior {
         seenMessage = SEEN_MESSAGE;
 
         if (currentEnergy <= 0) {
-            Debug.Log("game over");
             Time.timeScale = 0;
-            sceneController.playing = false;
+            sceneController.gameState = SceneController.GameState.Lose;
         }
 
         StartCoroutine(ClearSeenMessage());

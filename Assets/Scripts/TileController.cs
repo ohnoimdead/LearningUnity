@@ -11,7 +11,7 @@ public class TileController : MonoBehaviour {
 	}
 
     public void OnMouseOver() {
-        if (sceneController.playing) {
+        if (sceneController.gameState == SceneController.GameState.Playing) {
             // Absorb whatever is on the tile, starting at the top
             if (Input.GetKeyDown(KeyCode.Space)) {
                 objectOnTop = RecurseToTop(gameObject);
@@ -21,9 +21,8 @@ public class TileController : MonoBehaviour {
                     }
                     playerController.AbsorbObject(objectOnTop);
                     if (objectOnTop.GetComponent<WatcherController>()) {
-                        Debug.Log("game over");
                         Time.timeScale = 0;
-                        sceneController.playing = false;
+                        sceneController.gameState = SceneController.GameState.Win;
                     }
                     GameObject.Destroy(objectOnTop);
                 }
