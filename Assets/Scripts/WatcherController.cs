@@ -90,6 +90,7 @@ public class WatcherController : MonoBehaviour {
         while (true) {
             if (surveying) {
                 transform.Rotate(0, 60.0f, 0);
+                GetComponent<AudioSource>().Play();
             } else {
                 surveying = true;
             }
