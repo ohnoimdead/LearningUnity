@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class OverlayController : MonoBehaviour {
     public string levelName = "Level";
 
     private SceneController sceneController;
-    private PlayerController playerController;
-    private float originalTimeScale;
     private int panelWidth = 400;
     private int panelHeight = 50;
     private GUIStyle style;
@@ -16,9 +13,6 @@ public class OverlayController : MonoBehaviour {
 
     public void Start() {
         sceneController = GameObject.FindGameObjectWithTag("SceneController").GetComponent<SceneController>();
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        originalTimeScale = Time.timeScale;
-        Time.timeScale = 0;
     }
 
     public void OnGUI() {
@@ -50,15 +44,13 @@ public class OverlayController : MonoBehaviour {
             100,
             50
             ), "START")) {
-            sceneController.gameState = SceneController.GameState.Playing;
-            Time.timeScale = originalTimeScale;
+            sceneController.StartLevel();
             GetComponentInChildren<Camera>().enabled = false;
-            playerController.GetComponent<Camera>().enabled = true;
         }
     }
 
     private void DrawWinOverlay() {
-        if (SceneManager.sceneCountInBuildSettings - 1 > SceneManager.GetActiveScene().buildIndex) {
+        if (sceneController.AreScenesLeft()) {
             DrawOverlay(levelWinMessage);
 
             if (GUI.Button(new Rect(
@@ -67,7 +59,7 @@ public class OverlayController : MonoBehaviour {
                 100,
                 50
                 ), "NEXT")) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                sceneController.NextScene();
             }
         } else {
             DrawOverlay(gameWinMessage);
@@ -78,7 +70,7 @@ public class OverlayController : MonoBehaviour {
                 100,
                 50
                 ), "QUIT")) {
-                Application.Quit();
+                sceneController.StopGame();
             }
         }
     }
@@ -92,7 +84,7 @@ public class OverlayController : MonoBehaviour {
             100,
             50
             ), "RETRY")) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            sceneController.RestartScene();
         }
     }
 

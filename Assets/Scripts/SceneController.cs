@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour {
     public enum GameState { Starting, Playing, Lose, Win };
@@ -23,4 +24,36 @@ public class SceneController : MonoBehaviour {
     public Transform shellPrefab;
     public Transform platformPrefab;
     public Transform gemPrefab;
+
+    private float originalTimeScale;
+    private PlayerController playerController;
+
+    public void Start() {
+        originalTimeScale = Time.timeScale;
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        Time.timeScale = 0; // Everything starts stopped - OverlayController calls StartLevel below
+    }
+
+    public void StartLevel() {
+            gameState = SceneController.GameState.Playing;
+            Time.timeScale = originalTimeScale;
+            playerController.GetComponent<Camera>().enabled = true;
+    }
+
+    public bool AreScenesLeft() {
+        return SceneManager.sceneCountInBuildSettings - 1 > SceneManager.GetActiveScene().buildIndex;
+    }
+
+    public void RestartScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void StopGame() {
+        Application.Quit();
+    }
+
 }
