@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WatcherController : MonoBehaviour {
@@ -12,8 +13,11 @@ public class WatcherController : MonoBehaviour {
     // Variables for determining if a watchable is seen
     private Vector3 rayDirection;
 
+    private List<GameObject> seenObjects;
+
     public void Start() {
         eye = transform.Find("Camera").gameObject.GetComponent<Camera>();
+        seenObjects = new List<GameObject>();
         StartCoroutine("Survey");
     }
 
@@ -28,18 +32,28 @@ public class WatcherController : MonoBehaviour {
             if (GeometryUtility.TestPlanesAABB(eyeFrustum, watchable.GetComponent<Collider>().bounds)) {
                 // Now see if we can see the top of the object's collider
                 if (IsObjectSeen(watchable)) {
-                    // Now zap that fucker
+                    seenObjects.Add(watchable);
+
                     HealthManager hitHealthManager = watchable.GetComponent<HealthManager>();
                     if (hitHealthManager) {
-                        if (hitHealthManager.ISeeYou()) {
-                            // Now that the object has been destroyed, find the tile below this object and give it a gem if empty
-                            GameObject tile = TileBeneath(watchable);
-                            if (tile) {
-                                tile.GetComponent<ObjectStackingManager>().AddGem();
-                            }
-                        }
+                        hitHealthManager.ISeeYou();
                         surveying = false; // Stop here until all things are destroyed
                     }
+                }
+            }
+        }
+    }
+
+    private void ZapSeenObjects() {
+        HealthManager seenHealthManager;
+        foreach (GameObject seenObject in seenObjects) {
+            if (seenObject == null) { return; }
+            seenHealthManager = seenObject.GetComponent<HealthManager>();
+            if (seenHealthManager.Zap()) {
+                // Now that the object has been destroyed, find the tile below this object and give it a gem if empty
+                GameObject tile = TileBeneath(seenObject);
+                if (tile) {
+                    tile.GetComponent<ObjectStackingManager>().AddGem();
                 }
             }
         }
@@ -83,6 +97,9 @@ public class WatcherController : MonoBehaviour {
             DealWithSeenObjects();
 
             yield return new WaitForSeconds(surveySpeed);
+
+            ZapSeenObjects();
+            seenObjects = new List<GameObject>();
         }
     }
 }

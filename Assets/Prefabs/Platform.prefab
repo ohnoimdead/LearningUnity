@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitIndicatorSteps: 10
-  hitIndicatorDelay: 0.01
+  hitIndicatorDelay: 0.05
   health: 0
 --- !u!114 &114855534106187400
 MonoBehaviour:

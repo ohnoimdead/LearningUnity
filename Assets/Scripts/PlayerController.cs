@@ -70,15 +70,16 @@ public class PlayerController : MouseLookBehavior {
     }
 
     public void ISeeYou() {
-        currentEnergy -= 1;
         seenMessage = SEEN_MESSAGE;
+        StartCoroutine(ClearSeenMessage());
+    }
+
+    public void Zap() {
+        currentEnergy -= 1;
 
         if (currentEnergy <= 0) {
-            Time.timeScale = 0;
-            sceneController.gameState = SceneController.GameState.Lose;
+            sceneController.LoseGame();
         }
-
-        StartCoroutine(ClearSeenMessage());
     }
 
     // Take posession of shell when clicked on

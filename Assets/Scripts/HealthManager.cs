@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour {
     public int hitIndicatorSteps = 10;
-    public float hitIndicatorDelay = 0.01f;
+    public float hitIndicatorDelay = 0.05f;
 
     [HideInInspector]
     public int health;
@@ -31,14 +31,21 @@ public class HealthManager : MonoBehaviour {
     }
 
     // Called by the watcher when it sees this object
-    public bool ISeeYou() {
-        if (!pulsing) {
-            StartCoroutine(HitFlash());
-        }
-
-        // If we see the shell the player currently posesses, zap the player
+    public void ISeeYou() {
+        // If we see the shell the player currently posesses, indicate the player has been seen
         if (gameObject.name == SceneController.SHELL && gameObject.GetComponent<ShellController>().posessed) {
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ISeeYou();
+        } else {
+            if (!pulsing) {
+                StartCoroutine(HitFlash());
+            }
+        }
+    }
+
+    public bool Zap() {
+        // If we see the shell the player currently posesses, zap the player
+        if (gameObject.name == SceneController.SHELL && gameObject.GetComponent<ShellController>().posessed) {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().Zap();
             return false;
         } else {
             health -= 1;

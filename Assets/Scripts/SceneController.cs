@@ -46,14 +46,20 @@ public class SceneController : MonoBehaviour {
 
     public void RestartScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = originalTimeScale;
     }
 
     public void NextScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = originalTimeScale;
+    }
+
+    public void LoseGame() {
+        gameState = SceneController.GameState.Lose;
+        Time.timeScale = 0;
     }
 
     public void StopGame() {
         Application.Quit();
     }
-
 }
