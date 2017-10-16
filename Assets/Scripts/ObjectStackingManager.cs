@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/* Encapsulates the behavior of having the ability to know about an object
+ * stacked on top of this one. Currently applies to game tiles and platforms
+ * as those are the only objects that currently allow other stuff on top of
+ * them. */
 public class ObjectStackingManager : MonoBehaviour {
     public GameObject objectOnTop;
 

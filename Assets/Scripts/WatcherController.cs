@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* It looks around. It zaps stuff. You know the drill.
+ * Of interest: check out the Survey coroutine which tells seen objects they are seen
+ * but doesn't zap them until after the wait, that way the player gets a heads up
+ * that zapping is imminent but can still take action before the actual zap. */
 public class WatcherController : MonoBehaviour {
     public float surveySpeed = 10.0f;
 

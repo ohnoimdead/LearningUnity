@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/* Attached to objects that need to keep track of their health. Since the player object
+ * is somewhat special the PlayerController handles dealing with player health. This
+ * behavior mostly applies to shells and platforms.
+ * Also handles pulsing red when zapped by the watcher. */
 public class HealthManager : MonoBehaviour {
     public int hitIndicatorSteps = 10;
     public float hitIndicatorDelay = 0.05f;

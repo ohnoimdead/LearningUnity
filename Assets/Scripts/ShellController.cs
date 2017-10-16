@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+/* Basic shell functionality. Thankfully due to behavior encapsulation this is
+ * a fairly small amount of code for a fairly broad spectrum of behavior. */
 public class ShellController : MouseLookBehavior {
     // Is the player in this shell?
     public bool posessed = false;

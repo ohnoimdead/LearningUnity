@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/* Encapsulates the behavior of highlighting when the player mouses over
+ * the GameObject this is attached to.
+ * NOTE: The GameObject must have a collider or the OnMouse events will not fire. */
 public class ColorBump : MonoBehaviour {
     public int bumpSteps = 10;
     public float bumpAmount = 0.05f;

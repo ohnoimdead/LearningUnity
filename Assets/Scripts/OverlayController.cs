@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/* Handles basic UI elements to do everything from show a level's name
+ * and start button to showing the player loose or player win UIs.
+ * Super simple. Don't judge. */
 public class OverlayController : MonoBehaviour {
     public string levelName = "Level";
 
@@ -36,7 +39,7 @@ public class OverlayController : MonoBehaviour {
     }
 
     private void DrawStartingOverlay() {
-        DrawOverlay(levelName);
+        DrawCenteredOverlay(levelName);
 
         if (GUI.Button(new Rect(
             (Screen.width / 2) - 50,
@@ -51,7 +54,7 @@ public class OverlayController : MonoBehaviour {
 
     private void DrawWinOverlay() {
         if (sceneController.AreScenesLeft()) {
-            DrawOverlay(levelWinMessage);
+            DrawCenteredOverlay(levelWinMessage);
 
             if (GUI.Button(new Rect(
                 (Screen.width / 2) - 50,
@@ -62,7 +65,7 @@ public class OverlayController : MonoBehaviour {
                 sceneController.NextScene();
             }
         } else {
-            DrawOverlay(gameWinMessage);
+            DrawCenteredOverlay(gameWinMessage);
 
             if (GUI.Button(new Rect(
                 (Screen.width / 2) - 50,
@@ -76,7 +79,7 @@ public class OverlayController : MonoBehaviour {
     }
 
     private void DrawLoseOverlay() {
-        DrawOverlay(loseMessage);
+        DrawCenteredOverlay(loseMessage);
 
         if (GUI.Button(new Rect(
             (Screen.width / 2) - 50,
@@ -88,7 +91,7 @@ public class OverlayController : MonoBehaviour {
         }
     }
 
-    private void DrawOverlay(string message) {
+    private void DrawCenteredOverlay(string message) {
         GUI.Box(new Rect(
             (Screen.width / 2) - (panelWidth / 2),
             (Screen.height / 2) - (panelHeight / 2),

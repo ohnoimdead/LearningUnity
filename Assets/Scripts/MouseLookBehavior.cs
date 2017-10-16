@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+/* Basically what the class name indicates. This handles providing the ability to look
+ * around when the mouse is moved with RMB down. Of interest here is the fact that both
+ * the player and the shell the player possesses rotate in sync although the shell only
+ * rotates on the horizontal access. Also provides a frame buffer to smooth rotation a
+ * bit. */
 public class MouseLookBehavior : MonoBehaviour {
     [HideInInspector]
     public Quaternion xQuat, yQuat;

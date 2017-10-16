@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+/* Handles absorbing stuff stacked on the tile, also the ability to understand
+ * what's at the top of the pile for cases of stacked platforms. */
 public class TileController : MonoBehaviour {
     private PlayerController playerController;
     private GameObject objectOnTop;

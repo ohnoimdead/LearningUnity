@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/* Only used for the initial instructions screen. This was unique enough to warrent
+ * it's own controller vs using the OverlayController. */
 public class InstructionsController : MonoBehaviour {
     private int width = 600;
     private int height = 400;

@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/* All things player. Keep in mind that the player is really just a set of eyeballs.
+ * The physical representation of the player is the shell that the player currently
+ * possesses. The PlayerController keeps track of the players own energy vs using
+ * HealthManager. */
 public class PlayerController : MouseLookBehavior {
     public const string SEEN_MESSAGE = "HIDE!!";
 

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/* Contains some scene-wide constants as well as scene transition management.
+ * There must be one of these in the scene for anything else to work. */
 public class SceneController : MonoBehaviour {
     public enum GameState { Starting, Playing, Lose, Win };
 

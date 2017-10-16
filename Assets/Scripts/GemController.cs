@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+/* Really just handles rotating the gems at slightly different speeds for some
+ * visual interest. */
 public class GemController : MonoBehaviour {
     public float rotationSpeedMin = 10.0f;
     public float rotationSpeedMax = 20.0f;
