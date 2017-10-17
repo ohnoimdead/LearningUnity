@@ -1,4 +1,4 @@
 # LearningUnity
 Just a silly project for me to learn Unity.
 
-![](https://lh5.googleusercontent.com/Rk1LIPiTte5THSnJR1PzZuph9sKOaImDSA9v8-KrS40swRS_Z8CgfRk2NB-6T3cOFK1nEZu56EOgEOw=w1907-h972-rw)
+![](https://dl.boxcloud.com/api/2.0/internal_files/238353742382/versions/251458561582/representations/png_paged_2048x2048/content/1.png?access_token=1!sp4rBZzZQZNx3eWDUyGQ0JOm5OlQwosNpnCfyE5uYO_zuuGoMz4t2ktNUCcH9eNrsbfpQAqNQKAlk2rgBpSb2tOUlNknne-LIRXd9-Y1fNr9Bjko-dM-EsL2SXa7bSeWuKBgwqjjIs32JGVpdlUOTbtTfgNhsJ2DkAs9z-m2wy2tRZ7CD7cKljiWEol2-mjSHdsrwaIHUwcf8_X1EgQtvIq8G9HTsK5Jtx1lgByaS4MUC-AcByDNv6z6eZWurYWHnQ9W2ffq3y0hvmOW0JI188ty7y39t7MR9ATNru1b17jGjerGzVARxusiF4MsDzt2kDf7sbMzdgcWUfIhnP6KoxBzN_6p2vLQ8kxFEe99qy-5htTXwAs1zDK2O2hLOti8ZaPKKAXPexCrpYXl)
